@@ -2,31 +2,33 @@ name: Run Telegram PennyStock Notifier
 
 on:
   schedule:
-    # This cron expression will trigger the workflow at:
-    # time UTC
-    - cron: '0 4,6,8,10,18 * * *'
-  workflow_dispatch:  # Allows manual trigger via GitHub UI
+    - cron: '0 4,6,8,10,18 * * *'  # Run at time UTC
+  workflow_dispatch:
 
 jobs:
   run_script:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2  # This step checks out the repository code
+      uses: actions/checkout@v2
 
     - name: Set up Python
-      uses: actions/setup-python@v2  # This step sets up Python
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.x  # Install Python 3.x
+        python-version: 3.x
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt  # Install dependencies from requirements.txt
+        pip install -r requirements.txt
 
     - name: Run PennyStock Telegram Notifier
       run: |
-        python your_script.py  # Replace with the name of your Python script
+        python your_script.py
       env:
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}  # Use GitHub Secrets for sensitive data
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}  # Use GitHub Secrets for sensitive data
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+        REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+        REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+        ALPHA_VANTAGE_API_KEY: ${{ secrets.ALPHA_VANTAGE_API_KEY }}
