@@ -63,7 +63,7 @@ def get_valid_tickers():
 valid_tickers = get_valid_tickers()
 
 # Filter out common abbreviations and invalid tickers
-common_abbreviations = {"DD", "A", "S", "U", "FDA", "ESG", "AI", "I", "PR", "USA", "P", "Q", "T", "B", "M"}  # Add more if necessary
+common_abbreviations = {"DD", "A", "S", "U", "FDA", "ESG", "AI", "I", "PR", "USA", "P", "Q", "T", "B", "M", "YOLO"}  # Add more if necessary
 
 # Function to filter valid tickers (exclude short non-stock abbreviations)
 def filter_valid_tickers(tickers, valid_tickers, common_abbreviations):
@@ -95,7 +95,7 @@ pennystocks_message = get_top_tickers_text("pennystocks")
 wallstreetbets_message = get_top_tickers_text("wallstreetbets")
 
 # Combine the messages
-full_message = f"Top Tickers for r/pennystocks:\n{pennystocks_message}\n\nTop Tickers for r/wallstreetbets:\n{wallstreetbets_message}"
+full_message = f"Reddit Stocks Update!\n{pennystocks_message}\n\n{wallstreetbets_message}"
 
 # Send the message
 send_telegram_message(full_message)
