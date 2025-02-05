@@ -1,0 +1,32 @@
+name: Run Telegram PennyStock Notifier
+
+on:
+  schedule:
+    # This cron expression will trigger the workflow at:
+    # time UTC
+    - cron: '0 4,6,8,10,18 * * *'
+  workflow_dispatch:  # Allows manual trigger via GitHub UI
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # This step checks out the repository code
+
+    - name: Set up Python
+      uses: actions/setup-python@v2  # This step sets up Python
+      with:
+        python-version: 3.x  # Install Python 3.x
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt  # Install dependencies from requirements.txt
+
+    - name: Run PennyStock Telegram Notifier
+      run: |
+        python your_script.py  # Replace with the name of your Python script
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}  # Use GitHub Secrets for sensitive data
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}  # Use GitHub Secrets for sensitive data
