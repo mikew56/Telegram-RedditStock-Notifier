@@ -2,7 +2,7 @@ name: Run Telegram PennyStock Notifier
 
 on:
   schedule:
-    - cron: '0 4,6,8,10,18 * * *'  # Run at time UTC
+    - cron: '29 4,6,8,9,10,18 * * *'  # Run at time UTC
   workflow_dispatch:
 
 jobs:
